@@ -1,5 +1,5 @@
 import { parseCookies, setCookie } from "nookies";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Product } from "../../models/product";
 
 const storageKey = process.env.NEXT_PUBLIC_CART_STORAGE_KEY as string;
@@ -8,15 +8,29 @@ export const useCart = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [items, setItems] = useState<Product[]>([]);
 
-  const isEmpty = items.length === 0;
-  const totalItems = items.length;
+  const isEmpty = useMemo(() => items.length === 0, [items]);
+  const totalItems = useMemo(() => items.length, [items]);
+  const totalAmount = useMemo(() => {
+    const eachItemAmount = items.flatMap((item) => item.quantity * item.price);
+    return eachItemAmount.reduce((previous, next) => previous + next, 0);
+  }, [items]);
 
   function toggle() {
     setIsOpen(!isOpen);
   }
 
   function addItem(item: Product, quantity: number = 1) {
-    if (inCart(item.id)) return;
+    if (inCart(item.id)) {
+      const itemInCart = items.find(
+        (product) => product.id === item.id
+      ) as Product;
+
+      updateCartItemQuantity(item.id, itemInCart.quantity + 1);
+
+      toggle();
+
+      return;
+    }
 
     const newItem = { ...item, quantity };
 
@@ -32,7 +46,7 @@ export const useCart = () => {
       if (item.id === id) {
         return {
           ...item,
-          quantity,
+          quantity: quantity < 1 ? 1 : quantity,
         };
       }
 
@@ -95,6 +109,7 @@ export const useCart = () => {
     items,
     isEmpty,
     totalItems,
+    totalAmount,
     addItem,
     updateCartItemQuantity,
     getItem,

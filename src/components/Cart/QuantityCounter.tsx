@@ -1,28 +1,32 @@
+import { useCartContext } from "../../context/cart/CartContext";
+
 interface QuantityCounterProps {
-  quantity: number | undefined;
+  productId: string;
+  quantity: number;
 }
 
-export const QuantityCounter = ({ quantity }: QuantityCounterProps) => {
+export const QuantityCounter = ({
+  productId,
+  quantity,
+}: QuantityCounterProps) => {
+  const { updateCartItemQuantity } = useCartContext();
+
   return (
-    <div className="flex flex-row h-10 w-28 rounded-lg relative bg-transparent mt-1">
+    <div className="flex flex-row w-28 rounded-lg relative bg-transparent">
       <button
+        onClick={() => updateCartItemQuantity(productId, quantity - 1)}
         data-action="decrement"
-        className=" bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-20 rounded-l cursor-pointer outline-none"
+        className=" bg-gray-50 text-gray-600 hover:text-gray-700 hover:bg-gray-100 h-full w-20 rounded-l  flex items-center justify-center cursor-pointer outline-none"
       >
-        <span className="m-auto text-2xl font-thin">−</span>
+        <span className="text-2xl font-thin">−</span>
       </button>
-      <input
-        type="number"
-        className=" focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
-        name="custom-input-number"
-        disabled
-        defaultValue={quantity}
-      />
+
       <button
+        onClick={() => updateCartItemQuantity(productId, quantity + 1)}
         data-action="increment"
-        className=" bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 h-full w-20 rounded-l cursor-pointer outline-none"
+        className=" bg-gray-50 text-gray-600 hover:text-gray-700 hover:bg-gray-100 h-full w-20 rounded-r cursor-pointer outline-none"
       >
-        <span className="m-auto text-2xl font-thin">+</span>
+        <span className="text-2xl font-thin">+</span>
       </button>
     </div>
   );

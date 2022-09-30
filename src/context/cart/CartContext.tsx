@@ -7,6 +7,7 @@ export interface CartContextProps {
   isOpen: boolean;
   items: Product[];
   totalItems: number;
+  totalAmount: number;
   isEmpty: boolean;
   addItem: (item: Product) => void;
   updateCartItemQuantity: (id: string, quantity: number) => void;

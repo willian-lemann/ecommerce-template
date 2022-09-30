@@ -34,7 +34,7 @@ const products = [
 ];
 
 export function Cart() {
-  const { isOpen, toggle, items, removeItem } = useCartContext();
+  const { isOpen, items, totalAmount, toggle, removeItem } = useCartContext();
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -111,12 +111,13 @@ export function Cart() {
                                     </p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <div className="flex items-center">
-                                      <p className="text-gray-500 mr-4">
+                                    <div className="flex items-center justify-between max-w-md w-[12rem]">
+                                      <p className="text-gray-500 mr-10 m-0">
                                         Qty {product.quantity}
                                       </p>
 
                                       <QuantityCounter
+                                        productId={product.id}
                                         quantity={product.quantity}
                                       />
                                     </div>
@@ -142,7 +143,7 @@ export function Cart() {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>{totalAmount}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">
                         Shipping and taxes calculated at checkout.
@@ -160,7 +161,7 @@ export function Cart() {
                           or
                           <button
                             type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            className="pl-1 font-medium text-indigo-600 hover:text-indigo-500"
                             onClick={toggle}
                           >
                             Continue Shopping
