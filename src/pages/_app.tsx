@@ -1,15 +1,18 @@
 import { type AppType } from "next/app";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { api } from "@/utils/api";
 
 import "@/styles/globals.css";
-import { CartProvider } from "@/features/cart/hooks";
+import { Cart } from "@/features/cart/Cart";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <CartProvider>
+    <>
       <Component {...pageProps} />
-    </CartProvider>
+      <Cart />
+      <ReactQueryDevtools />
+    </>
   );
 };
 

@@ -3,8 +3,6 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 
 import { ecommerceApi } from "@/lib/ecommerce";
-import { Product } from "@/features/products/types/product";
-import { formatPrice } from "@/utils/format-price";
 import { retriveProductPrice } from "@/utils/retrive-product-price";
 
 export const productsRouter = createTRPCRouter({

@@ -1,20 +1,22 @@
-import { useCartContext } from "@/features/cart/hooks";
-import { type Product } from "@/features/products/types/product";
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
-
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useCart } from "../cart/hooks/useCart";
 import { useProducts } from "./hooks/use-products";
+
+import { useQueryClient } from "@tanstack/react-query";
+import { api } from "@/utils/api";
 
 export const ProductList = () => {
   const router = useRouter();
-  const { addItem } = useCart();
   const { products } = useProducts();
+  const trpcContext = api.useContext();
 
   function handleProductDetails(id: string) {
     router.push(`/produto/${id}`);
   }
+
+  // async function prefetchWhenHover(id: string) {
+  //   await trpcContext.products.byId.prefetch({ id });
+  // }
 
   return (
     <div className="bg-white">
@@ -48,15 +50,9 @@ export const ProductList = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col items-end">
-                  <p className="text-sm font-medium text-gray-900">
-                    {product.default_price?.toString()}
-                  </p>
-
-                  <button className=" rounded-md py-1 text-primary">
-                    <ShoppingCartIcon className="h-6 w-6" />
-                  </button>
-                </div>
+                <p className="text-sm font-medium text-gray-900">
+                  {product.price}
+                </p>
               </div>
             </li>
           ))}

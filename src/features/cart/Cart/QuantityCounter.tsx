@@ -1,4 +1,4 @@
-import { useCartContext } from "@/features/cart/hooks";
+import { useCart } from "@/features/cart/hooks/use-cart";
 
 interface QuantityCounterProps {
   productId: string;
@@ -9,7 +9,7 @@ export const QuantityCounter = ({
   productId,
   quantity,
 }: QuantityCounterProps) => {
-  const { updateCartItemQuantity } = useCartContext();
+  const { updateCartItemQuantity } = useCart();
 
   return (
     <div className="relative flex w-28 flex-row rounded-lg bg-transparent">
