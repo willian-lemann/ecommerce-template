@@ -6,8 +6,11 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
-  reactStrictMode: true,
-
+  reactStrictMode: false,
+  swcMinify: true,
+  images: {
+    domains: ["files.stripe.com", "tailwindui.com"],
+  },
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
    * must comment the below `i18n` config out.

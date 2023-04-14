@@ -4,7 +4,6 @@ import { Hero } from "@/features/dashboard/Hero";
 import { ProductList } from "@/features/products/ProductList";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { api } from "@/utils/api";
 
 const Home: NextPage = () => {
   return (

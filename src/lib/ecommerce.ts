@@ -1,15 +1,8 @@
-import "@shopify/shopify-api/adapters/node";
+import Stripe from "stripe";
+import { env } from "@/env.mjs";
 
-import "@shopify/shopify-api/adapters/node";
-import { shopifyApi, LATEST_API_VERSION } from "@shopify/shopify-api";
-
-const shopify = shopifyApi({
-  apiKey: process.env.API_KEY as string,
-  apiSecretKey: process.env.API_SECRET_KEY as string,
-  scopes: ["read_products"],
-  hostName: process.env.HOSTNAME as string,
-  apiVersion: LATEST_API_VERSION,
-  isEmbeddedApp: false,
+const stripe = new Stripe(env.ECOMMERCE_API_KEY, {
+  apiVersion: "2022-11-15",
 });
 
-export const ecommerceApi = shopify;
+export const ecommerceApi = stripe;

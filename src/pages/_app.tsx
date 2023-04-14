@@ -9,7 +9,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <CartProvider>
       <Component {...pageProps} />
-      {}
     </CartProvider>
   );
 };
