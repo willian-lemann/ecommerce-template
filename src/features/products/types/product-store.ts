@@ -5,5 +5,4 @@ export type ProductStore = {
   setProducts(products: Product[]): void;
   update(id: string, product: Product): Promise<void>;
   create(newProduct: Product): Promise<void>;
-  delete(id: string): Promise<void>;
 };

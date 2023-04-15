@@ -9,7 +9,12 @@ const config = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ["files.stripe.com", "tailwindui.com", "images.unsplash.com"],
+    domains: [
+      "files.stripe.com",
+      "tailwindui.com",
+      "images.unsplash.com",
+      "avatars.githubusercontent.com",
+    ],
   },
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
