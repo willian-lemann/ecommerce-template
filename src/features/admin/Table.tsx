@@ -1,12 +1,10 @@
 import { useProducts } from "../products/hooks/use-products";
 import { TableItem } from "./TableItem";
 import { useEditModal } from "./hooks/use-edit-modal";
-import { useDeleteModal } from "./hooks/use-delete-modal";
 
 export function Table() {
   const { products } = useProducts();
   const { openModal } = useEditModal();
-  const { openDeleteModal } = useDeleteModal();
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -26,7 +24,7 @@ export function Table() {
               Preço
             </th>
             <th scope="col" className="px-6 py-3">
-              Editar/Remover
+              Editar
             </th>
           </tr>
         </thead>

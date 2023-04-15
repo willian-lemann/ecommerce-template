@@ -1,13 +1,19 @@
+import { useAddProductModal } from "./hooks/use-add-modal";
 import { Table } from "./Table";
 
 export function Products() {
+  const { openAddProductModal } = useAddProductModal();
+
   return (
     <main className="flex h-[calc(100vh-80px)] flex-col">
       <div className="flex h-20 justify-between">
         <h2 className="text-lg">Dashboard dos produtos</h2>
 
         <section className="flex items-start gap-4">
-          <button className="cursor-pointer rounded-lg bg-indigo-800 px-4 py-1.5 text-white">
+          <button
+            onClick={openAddProductModal}
+            className="cursor-pointer rounded-lg bg-indigo-800 px-4 py-1.5 text-white"
+          >
             Adicionar produto
           </button>
 

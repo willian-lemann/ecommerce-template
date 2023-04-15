@@ -1,4 +1,4 @@
-import { DeleteProduct } from "@/features/admin/DeleteModal";
+import { AddProduct } from "@/features/admin/AddProduct";
 import { EditProduct } from "@/features/admin/EditProduct";
 import { Orders } from "@/features/admin/Orders";
 import { Products } from "@/features/admin/Products";
@@ -48,7 +48,7 @@ export default function Admin() {
             <Tab.Panel>
               <Products />
               <EditProduct />
-              <DeleteProduct />
+              <AddProduct />
             </Tab.Panel>
 
             <Tab.Panel>
